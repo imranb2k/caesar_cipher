@@ -17,14 +17,14 @@ public class CaesarCipher {
             int charNum = Character.toLowerCase(word.charAt(i));
             int encryptedRotation = charNum + rotation;
 
-            if (encryptedRotation > UNICODE_LOWERCASE_Z) {
-
-                int resetCharNum = (encryptedRotation - 1) - UNICODE_LOWERCASE_Z;
-                encrypted += Character.toString((char) (UNICODE_LOWERCASE_A + resetCharNum));
-
-            } else if (charNum < 65 || (charNum > 90 & charNum < 97 ) || charNum > 122) {
+            if (charNum < 65 || (charNum > 90 & charNum < 97 ) || charNum > 122) {
 
                 encrypted += Character.toString((char) (charNum));
+
+            } else if (encryptedRotation > UNICODE_LOWERCASE_Z) {
+
+                int resetRotation = (encryptedRotation - 1) - UNICODE_LOWERCASE_Z;
+                encrypted += Character.toString((char) (UNICODE_LOWERCASE_A + resetRotation));
 
             } else {
 
@@ -48,14 +48,14 @@ public class CaesarCipher {
             int charNum = Character.toLowerCase(word.charAt(i));
             int decryptedRotation = charNum - rotation;
 
-            if (decryptedRotation < UNICODE_LOWERCASE_A) {
-
-                //int resetCharNum = (decryptedRotation - 1) - UNICODE_LOWERCASE_Z;
-                decrypted += Character.toString((char) (UNICODE_LOWERCASE_Z - rotation));
-
-            } else if (charNum < 65 || (charNum > 90 & charNum < 97 ) || charNum > 122) {
+            if (charNum < 65 || (charNum > 90 & charNum < 97 ) || charNum > 122) {
 
                 decrypted += Character.toString((char) (charNum));
+
+            } else if (decryptedRotation < UNICODE_LOWERCASE_A) {
+
+                int resetRotation = UNICODE_LOWERCASE_A - (decryptedRotation + 1);
+                decrypted += Character.toString((char) (UNICODE_LOWERCASE_Z - resetRotation));
 
             } else {
 
